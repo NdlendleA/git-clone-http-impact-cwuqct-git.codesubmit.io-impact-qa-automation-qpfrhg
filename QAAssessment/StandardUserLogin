@@ -1,0 +1,100 @@
+package QAAssessment
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDrive;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class StandardUserLogin {
+
+	public static void main (String [] arg){
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://qa-challenge.codesubmit.io/login.html");
+
+		//Find user Name and set it
+		WebElement txtbx_username =
+			driver.findElement(By.id("login-button"));
+
+		txtbx_username.sendKeys("standard_user");
+
+		//Set Passsword
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+		driver.findElement(By.id("login-button")).click();
+
+		//another way of doing
+		driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+		String expected_title = "Single Page Apps for GitHub Pages";
+		String actual_title = driver.getTitle();
+
+		//Condition
+		if (expected_title.equals(actual_title)){
+			System.out.println("Login Successfull")
+		}else{
+			System.out.println("Login Failed")
+
+		}
+
+		 //check if the filter textbox works
+		 driver.findElement(By.xpath("//select[@class='product_sort_container']")).click();
+
+		 //check if the cart icon works
+		 driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+ 
+		 //check if the continue shopping button works
+		 driver.findElement(By.xpath("//button[@id='continue-shopping']")).click();
+ 
+		 //check if the add to cart button works
+		 driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']")).click();
+ 
+		 //check if the remove button works
+		 driver.findElement(By.xpath("//button[@id='remove-sauce-labs-backpack']")).click();
+ 
+		 //add an item to cart
+		 driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bike-light']")).click();
+ 
+		 //click on the cart icon
+		 driver.findElement(By.xpath("//button[@id='continue-shopping']")).click();
+ 
+		 //proceed to check out
+		 driver.findElement(By.xpath("//button[@id='checkout']")).click();
+ 
+		 //check if the remove button works
+		 driver.findElement(By.xpath("//button[@id='remove-sauce-labs-backpack']")).click();
+ 
+		 //check if the cart icon works
+		 driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+ 
+		 //Enter First Name
+		 driver.findElement(By.id("first-name")).sendKeys("Alungile");
+		
+		 //Enter Last Name
+		  driver.findElement(By.id("last-name")).sendKeys("Ndlendle");
+ 
+		 //Enter Zip Code    
+		 driver.findElement(By.id("postal-code")).sendKeys("7100");
+ 
+		  //click continue
+		  driver.findElement(By.xpath("///input[@id='continue']")).click();
+ 
+		 //click finish
+		 driver.findElement(By.xpath("//button[@id='finish']")).click();
+ 
+		 //check if the cancel but exist
+		 driver.findElement(By.xpath("//button[@id='cancel']"));
+ 
+		 //Go back to products
+		 driver.findElement(By.xpath("//button[@id='back-to-products']")).click();
+
+		  //Click the menu
+		  driver.findElement(By.xpath("//button[@id='react-burger-menu-btn']")).click();
+
+		  //Click logout
+		  driver.findElement(By.xpath("//a[@id='logout_sidebar_link']")).click();
+		}
+	}
+
+}

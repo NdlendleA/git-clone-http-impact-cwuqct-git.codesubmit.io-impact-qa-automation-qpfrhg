@@ -1,0 +1,43 @@
+package QAAssessment
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDrive;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class StandardUserLogin {
+
+	public static void main (String [] arg){
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://qa-challenge.codesubmit.io/login.html");
+
+		//Find user Name and set it
+		WebElement txtbx_username =
+			driver.findElement(By.id("login-button"));
+
+		txtbx_username.sendKeys("locked_out_user");
+
+		//Set Passsword
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+		driver.findElement(By.id("login-button")).click();
+
+		//another way of doing
+		driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+		String data-test = "error";
+		String actual_data-test = driver.data-test();
+
+		//Condition
+		if (expected_data-test.equals(actual_data-test)){
+			System.out.println("Sorry, this user has been locked out.")
+		}else{
+			System.out.println("Login Failed")
+
+		}
+
+	}
+
+}

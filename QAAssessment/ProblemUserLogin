@@ -1,0 +1,86 @@
+package QAAssessment
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDrive;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class StandardUserLogin {
+
+	public static void main (String [] arg){
+
+		WebDriver driver = new ChromeDriver();
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		driver.get("https://qa-challenge.codesubmit.io/login.html");
+
+		//Find user Name and set it
+		WebElement txtbx_username =
+			driver.findElement(By.id("login-button"));
+
+		txtbx_username.sendKeys("problem_user");
+
+		//Set Passsword
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+		driver.findElement(By.id("login-button")).click();
+
+		//another way of doing
+		driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+		String expected_src = "/static/media/sauce-backpack-1200x1500.34e7aa42.jpg";
+		String actual_src = driver.getSrc();
+
+		//Condition
+		if (expected_src.equals(actual_src)){
+			System.out.println("Login Successfull")
+		}else{
+			System.out.println("Problem user logged in. Improper images displayed")
+
+		}
+
+        //check if the filter textbox works
+		 driver.findElement(By.xpath("//select[@class='product_sort_container']")).click();
+
+		 //check if the cart icon works
+		 driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+ 
+		 //check if the continue shopping button works
+		 driver.findElement(By.xpath("//button[@id='continue-shopping']")).click();
+
+          //add an item to the cart
+		 driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']")).click();
+
+          //check if the remove button works
+		 driver.findElement(By.xpath("//button[@id='remove-sauce-labs-backpack']")).click();
+ 
+		 //add a second item
+		 driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bike-light']")).click();
+ 
+		 //add anthoer item to cart
+		 driver.findElement(By.xpath("//button[@id='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+ 
+        //It seems there are some buttons that are not functional when trying to add to cart.
+        // The same applies when trying to remove an item unless you remove it from it from the cart chart.
+
+		//proceed to check out
+        driver.findElement(By.xpath("//button[@id='checkout']")).click();
+ 
+        //check if the remove button works
+        driver.findElement(By.xpath("//button[@id='remove-sauce-labs-backpack']")).click();
+
+        //check if the cart icon works
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+
+        //Enter First Name
+        driver.findElement(By.id("first-name")).sendKeys("Alungile");
+       
+        //Last Name textbox not functioning and is tempering with the First Name textbox field.
+         
+         //click cancel
+         driver.findElement(By.xpath("//button[@id='cancel']")).click();
+
+	}
+
+}

@@ -1,0 +1,45 @@
+package QAAssessment
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDrive;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class StandardUserLogin {
+
+	public static void main (String [] arg){
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://qa-challenge.codesubmit.io/login.html");
+
+		//Find user Name and set it
+		WebElement txtbx_username =
+			driver.findElement(By.id("login-button"));
+
+		txtbx_username.sendKeys("performance_glitch_user");
+
+		//Set Passsword
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+
+		driver.findElement(By.id("login-button")).click();
+
+		//another way of doing
+		driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+		String expected_title = "Single Page Apps for GitHub Pages";
+		String actual_title = driver.getTitle();
+
+		//Condition
+		if (expected_title.equals(actual_title)){
+			System.out.println("Login Successfull")
+		}else{
+			System.out.println("Login Failed")
+
+		}
+
+       
+
+	}
+
+}
